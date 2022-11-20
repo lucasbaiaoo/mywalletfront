@@ -1,5 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignInPage from "./pages/SignInPage";
+import SingUpPage from "./pages/SignUpPage";
+import StatementPage from "./pages/StatementPage";
+import IncomePage from "./pages/IncomePage";
+import OutflowPage from "./pages/OutflowPage";
 
 export default function App() {
   return (
