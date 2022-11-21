@@ -2,17 +2,60 @@ import styled from "styled-components";
 import TopText from "../components/TopText";
 import Input from "../components/Input";
 import Button1 from "../components/Button1";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function IncomePage() {
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const promise1 = axios.post("http://localhost:5000/statement", {
+      price: price,
+      description: description,
+      type: "income"  
+    });
+
+    promise1.then(() => navigate("/extrato", {}));
+
+    promise1.catch((error) => {
+      alert(error.response.data.message);
+      setIsLoading(false);
+    });
+  }
+
   return (
     <IncomePageStyle>
       <Header>
         <TopText text={"Nova entrada"} />
       </Header>
-      <Input type={"text"} placeholder={"Valor"} />
-      <Input type={"text"} placeholder={"Descrição"} />
-      <Button1 text={"Salvar entrada"} />
-      <SpacingBox/>
+      <form onSubmit={handleSubmit}>
+        <Input
+          type={"number"}
+          placeholder={"Valor"}
+          onChange={(e) => setPrice(e.target.value)}
+          disabled={isLoading}
+          step="0.01"
+        />
+        <Input
+          type={"text"}
+          placeholder={"Descrição"}
+          onChange={(e) => setDescription(e.target.value)}
+          disabled={isLoading}
+        />
+        <Button1
+          text={"Salvar entrada"}
+          disabled={isLoading}
+          isFilled={price.length === 0 || description.length === 0}
+        />
+      </form>
+      <SpacingBox />
     </IncomePageStyle>
   );
 }

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import loading from "../assets/images/loading.svg"
 
-export default function Button1({ text, disabled, isConfirmed }) {
-  if(isConfirmed){
+export default function Button1({ text, disabled, isConfirmed, isFilled }) {
+  if(isConfirmed || isFilled){
     return <Button1Style disabled={true}>{text}</Button1Style>;
   }
   

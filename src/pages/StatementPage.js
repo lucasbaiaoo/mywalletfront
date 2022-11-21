@@ -3,22 +3,37 @@ import TopText from "../components/TopText";
 import Button2 from "../components/Button2";
 import { useContext } from "react";
 import UserContext from "../contexts/userContext";
+import { Link, useNavigate} from "react-router-dom";
 
 export default function StatementPage() {
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  function signOut(){
+    localStorage.clear();
+    
+    setUserInfo({});
+
+    navigate("/", {
+    });
+  }
 
   return (
     <StatementPageStyle>
         <Header>
       <TopText text= {`Olá, ${userInfo.name}`} />
-      <ion-icon name="exit-outline"></ion-icon>
+      <ion-icon name="exit-outline" onClick={signOut}></ion-icon>
       </Header>
       <Statements>
         <p>Não há registros de entrada ou saída</p>
       </Statements>
       <ButtonsBox>
+      <Link to="/entrada">
       <Button2 icon={<ion-icon name="add-circle-outline"></ion-icon>} text={"Nova Entrada"}/>
+      </Link>
+      <Link to="/saida">
       <Button2 icon={<ion-icon name="remove-circle-outline"></ion-icon>} text={"Nova Saída"}/>
+      </Link>
       </ButtonsBox>
     </StatementPageStyle>
   );

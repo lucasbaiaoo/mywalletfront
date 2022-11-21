@@ -1,7 +1,23 @@
 import styled from "styled-components";
 
-export default function Input({ type, placeholder, value, onChange, disabled }) {
-  return <InputStyle type={type} placeholder={`${placeholder}`} value={value} onChange={onChange} disabled={disabled}></InputStyle>;
+export default function Input({
+  type,
+  placeholder,
+  value,
+  onChange,
+  disabled,
+  step
+}) {
+  return (
+    <InputStyle
+      type={type}
+      placeholder={`${placeholder}`}
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      step={step}
+    ></InputStyle>
+  );
 }
 
 const InputStyle = styled.input`
@@ -16,11 +32,21 @@ const InputStyle = styled.input`
   margin-bottom: 13px;
   padding-left: 15px;
   box-sizing: border-box;
-  ::placeholder{
+  ::placeholder {
     color: #000000;
     opacity: 1;
   }
-  &:disabled{
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    
+    -webkit-appearance: none;
+    margin: 0; 
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield; 
+  }
+  &:disabled {
     filter: brightness(0.8);
   }
 `;
