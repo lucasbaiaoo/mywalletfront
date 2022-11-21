@@ -5,10 +5,12 @@ import SingUpPage from "./pages/SignUpPage";
 import StatementPage from "./pages/StatementPage";
 import IncomePage from "./pages/IncomePage";
 import OutflowPage from "./pages/OutflowPage";
+import { UserProvider } from "./contexts/userContext";
 
 export default function App() {
   return (
     <>
+      <UserProvider>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
@@ -19,6 +21,7 @@ export default function App() {
           <Route path="/saida" element={<OutflowPage />} />
         </Routes>
       </BrowserRouter>
+      </UserProvider>
     </>
   );
 }

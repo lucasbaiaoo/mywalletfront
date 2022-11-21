@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import TopText from "../components/TopText";
 import Button2 from "../components/Button2";
-//import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../contexts/userContext";
 
 export default function StatementPage() {
+  const { userInfo } = useContext(UserContext);
+
   return (
     <StatementPageStyle>
         <Header>
-      <TopText text={"Olá, Fulano"} />
+      <TopText text= {`Olá, ${userInfo.name}`} />
       <ion-icon name="exit-outline"></ion-icon>
       </Header>
       <Statements>
