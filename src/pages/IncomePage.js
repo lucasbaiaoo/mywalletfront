@@ -5,12 +5,15 @@ import Button1 from "../components/Button1";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import UserContext from "../contexts/userContext";
 
 export default function IncomePage() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { userInfo } = useContext(UserContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,6 +22,7 @@ export default function IncomePage() {
     const promise1 = axios.post("http://localhost:5000/statement", {
       price: price,
       description: description,
+      name: userInfo.name,
       type: "income"  
     });
 

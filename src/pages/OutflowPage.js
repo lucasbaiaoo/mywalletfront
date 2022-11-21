@@ -5,12 +5,16 @@ import Button1 from "../components/Button1";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import UserContext from "../contexts/userContext";
 
 export default function OutflowPage() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { userInfo } = useContext(UserContext);
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,6 +23,7 @@ export default function OutflowPage() {
     const promise1 = axios.post("http://localhost:5000/statement", {
       price: price,
       description: description,
+      name: userInfo.name,
       type: "outflow"
     });
 
@@ -37,10 +42,11 @@ export default function OutflowPage() {
       </Header>
       <form onSubmit={handleSubmit}>
         <Input
-          type={"text"}
+          type={"number"}
           placeholder={"Valor"}
           onChange={(e) => setPrice(e.target.value)}
           disabled={isLoading}
+          step="0.01"
         />
         <Input
           type={"text"}
