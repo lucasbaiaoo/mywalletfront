@@ -19,12 +19,15 @@ export default function IncomePage() {
     e.preventDefault();
     setIsLoading(true);
 
-    const promise1 = axios.post("http://localhost:5000/statement", {
-      price: price,
-      description: description,
-      name: userInfo.name,
-      type: "income"  
-    });
+    const promise1 = axios.post(
+      "http://localhost:5000/statement",
+      {
+        price: price,
+        description: description,
+        type: "income",
+      },
+      { headers: { Authorization: "Bearer " + userInfo.token } }
+    );
 
     promise1.then(() => navigate("/extrato", {}));
 

@@ -59,7 +59,7 @@ export default function StatementPage() {
       </Statement>
       <Balance display={userTransactions?.userTransactions?.length === 0 ? "none" : "flex"}>
           <Info fontweight="700" fontsize="17px" lineheight="19.96px" color="#000000">SALDO</Info> 
-          <Info fontweight="400" fontsize="17px" lineheight="19.96px" color={ userTransactions?.balance < 0 ? "#C70000": "#03AC00" }>{userTransactions?.balance}</Info>
+          <Info fontweight="400" fontsize="17px" lineheight="19.96px" color={ userTransactions?.balance < 0 ? "#C70000": "#03AC00" }>{userTransactions?.balance?.toFixed(2).replace("." , ",")}</Info>
           </Balance>
       <ButtonsBox>
         <Link to="/entrada">
@@ -86,6 +86,9 @@ const StatementPageStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  a{
+    text-decoration: none;
+  }
 `;
 
 const Statement = styled.div`

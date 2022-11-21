@@ -15,17 +15,19 @@ export default function OutflowPage() {
   const navigate = useNavigate();
   const { userInfo } = useContext(UserContext);
 
-
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
 
-    const promise1 = axios.post("http://localhost:5000/statement", {
-      price: price,
-      description: description,
-      name: userInfo.name,
-      type: "outflow"
-    });
+    const promise1 = axios.post(
+      "http://localhost:5000/statement",
+      {
+        price: price,
+        description: description,
+        type: "outflow"
+      },
+      { headers: { Authorization: "Bearer " + userInfo.token } }
+    );
 
     promise1.then(() => navigate("/extrato", {}));
 
