@@ -9,9 +9,9 @@ export default function SignInPage(){
     return (
         <SignInPageStyle>
           <Logo />
-          <form onSubmit="">
+          <form onSubmit={handleSubmit}>
             <Input
-              type={"text"}
+              type={"email"}
               placeholder={"E-mail"}
             />
             <Input

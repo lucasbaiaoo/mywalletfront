@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import loading from "../assets/images/loading.svg"
 
-export default function Button1({ text, disabled }) {
+export default function Button1({ text, disabled, isConfirmed }) {
+  if(isConfirmed){
+    return <Button1Style disabled={true}>{text}</Button1Style>;
+  }
+  
   return <Button1Style disabled={disabled}>{disabled ? <img src={loading} alt=""/> : `${text}`}</Button1Style>;
 }
 
