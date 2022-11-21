@@ -14,6 +14,7 @@ const InputStyle = styled.input`
   line-height: 23.48px;
   display: block;
   margin-bottom: 13px;
+  padding-left: 15px;
   box-sizing: border-box;
   ::placeholder{
     color: #000000;
