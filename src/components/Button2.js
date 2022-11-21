@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import loading from "../assets/images/loading.svg"
 
-export default function Button2({ text }) {
-  return <Button2Style>{text}</Button2Style>;
+export default function Button2({ icon, text }) {
+  return <Button2Style>
+    {icon}
+    {text}
+    </Button2Style>;
 }
 
 const Button2Style = styled.button`
@@ -16,5 +18,15 @@ const Button2Style = styled.button`
   font-size: 17px;
   line-height: 19.98px;
   color: #ffffff;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 11px;
+  padding-left: 10px;
+  ion-icon{
+    font-size: 30px;
+    margin-top: 11px
+  }
   cursor: pointer;
 `;
